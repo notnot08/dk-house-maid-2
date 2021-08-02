@@ -14,21 +14,21 @@ class Log_model extends CI_Model {
 		} elseif ($param == 'USER') {
 			$query = "SELECT b.JENIS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE 
 			FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID
-			JOIN MST_USER c ON a.ID_USER = c.ID
+			JOIN TB_USER c ON a.ID_USER = c.ID
 			WHERE a.JENIS in ('2','3','5','6') AND a.CODE = '".$id."'";
 		} elseif ($param == 'DOC_TYPE') {
-			$query = "SELECT b.JENIS AS KEGIATAN, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN MST_USER c ON a.ID_USER = c.ID
+			$query = "SELECT b.JENIS AS KEGIATAN, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN TB_USER c ON a.ID_USER = c.ID
 			WHERE a.JENIS in ('7')";
 		} elseif ($param == 'JOB') {
-			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN MST_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('8','9','10')";
+			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN TB_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('8','9','10')";
 		} elseif ($param == 'KUALIFIKASI') {
-			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN MST_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('11','12','13')";
+			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN TB_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('11','12','13')";
 		} elseif ($param == 'PERUSAHAAN') {
-			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN MST_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('38')";
+			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN TB_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('38')";
 		} elseif ($param == 'LOWONGAN') {
-			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN MST_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('39')";
+			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN TB_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('39')";
 		} elseif ($param == 'KONTEN') {
-			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN MST_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('43', '44', '45') AND a.CODE = '".$id."'";
+			$query = "SELECT b.JENIS AS KEGIATAN, a.CHANGE_STATUS, a.CATATAN, c.NAMA, a.INSERT_DATE FROM LOG a LEFT JOIN TB_RULE_ACT b ON a.JENIS = b.ID JOIN TB_USER c ON a.ID_USER = c.ID WHERE a.JENIS in ('43', '44', '45') AND a.CODE = '".$id."'";
 		}
 
 		$hasil = $this->db->query($query." ORDER BY INSERT_DATE DESC LIMIT 10");
@@ -43,7 +43,7 @@ class Log_model extends CI_Model {
 		        '".$data['REF1']."' AS REF1,
 		        '".$data['REF2']."' AS REF2,
 		        '".$data['REF3']."' AS REF3,
-		        (SELECT NAMA FROM MST_USER WHERE ID = '".$data['USER']."') AS 'USER',
+		        (SELECT NAMA FROM TB_USER WHERE ID = '".$data['USER']."') AS 'USER',
 		        '".$data['REMARK']."' AS REMARK
 		    FROM TB_EVENTTYPE
 		    WHERE ID = '".$data['EVENTTYPE']."'";
