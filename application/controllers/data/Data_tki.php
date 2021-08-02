@@ -46,23 +46,7 @@ class Data_tki extends CI_Controller {
 					'ID_GROUP' => $_SESSION['logged_in']['group'],
 					'CREATED_BY' => $_SESSION['logged_in']['id_user']);
 
-				$id_alamat = $this->GenerateID_model->generateid();
-				$dataAlamat = array(
-					'ID' => $id_alamat,
-					'ID_TKI' => $id_tki,
-					'JENIS_ALAMAT' => strtoupper($this->input->post('jenis_alamat')),
-					'JALAN' => strtoupper($this->input->post('alamat')),
-					'RT' => $this->input->post('RT'),
-					'RW' => $this->input->post('RW'),
-					'KECAMATAN' => strtoupper($this->input->post('kecamatan')),
-					'KELURAHAN' => strtoupper($this->input->post('kelurahan')),
-					'KOTA' => strtoupper($this->input->post('kota')),
-					'KD_POS' => $this->input->post('kd_pos'),
-					'PROVINSI' => strtoupper($this->input->post('provinsi')),
-					'DESA' => strtoupper($this->input->post('desa')),
-					'CREATED_BY' => $_SESSION['logged_in']['id_user']);
-
-				$result = $this->InsertUpdate_model->register_ctki('INSERT', $dataTki, $dataAlamat);
+				$result = $this->InsertUpdate_model->register_ctki('INSERT', $dataTki);
 
 				if ($result == TRUE) {
 					$status_sukses_data = 'Sukses';
@@ -75,17 +59,6 @@ class Data_tki extends CI_Controller {
 						'ID_USER' => $_SESSION['logged_in']['id_user']
 					);
 					$this->Log_model->insert_log($data_log_insert_tki);
-
-					$status_sukses_alamat = 'Sukses';
-					$data_log_alamat = array(
-						'JENIS' => '16',
-						'CODE' => $id_alamat,
-						'AKSI' => 'CREATE',
-						'STATUS' => '1',
-						'CATATAN' => implode("|",$dataAlamat),
-						'ID_USER' => $_SESSION['logged_in']['id_user']
-					);
-					$this->Log_model->insert_log($data_log_alamat);
 
 					$create_event = array(
 						'EVENTTYPE' => '1',
@@ -200,15 +173,6 @@ class Data_tki extends CI_Controller {
 					);
 					$this->Log_model->insert_log($data_log);
 
-					$data_log_alamat = array(
-						'JENIS' => '16',
-						'CODE' => $id_alamat,
-						'AKSI' => 'CREATE',
-						'STATUS' => '0',
-						'CATATAN' => implode("|",$data_alamat),
-						'ID_USER' => $_SESSION['logged_in']['id_user']
-					);
-					$this->Log_model->insert_log($data_log_alamat);
 					$this->session->set_flashdata('message', '<div class="alert alert-warning alert-dismissible">
 						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 						<i class="icon fas fa-check"></i> Gagal meregister calon TKI
@@ -222,9 +186,7 @@ class Data_tki extends CI_Controller {
 			$validate = $this->Log_model->validateAct('35')->num_rows();
 			if ($validate > 0) {
 				$id_tki_update = $this->input->post('id_tki');
-				$data = array(
-					'ID_TKI' => $id_tki_update,
-					'STATUS' => '1');
+				$data = array('STATUS' => '1');
 				$validate = $this->InsertUpdate_model->checkAvailability($data)->num_rows();
 				if ($validate < 1) {
 					$dataTki = array(
@@ -247,24 +209,7 @@ class Data_tki extends CI_Controller {
 						'ID_GROUP' => $_SESSION['logged_in']['group'],
 						'CREATED_BY' => $_SESSION['logged_in']['id_user']);
 
-					$id_alamat_update = $this->input->post('id_alamat');
-					$dataAlamat = array(
-						'JENIS_ALAMAT' => strtoupper($this->input->post('jenis_alamat')),
-						'JALAN' => strtoupper($this->input->post('alamat')),
-						'RT' => $this->input->post('rt'),
-						'RW' => $this->input->post('rw'),
-						'KECAMATAN' => strtoupper($this->input->post('kecamatan')),
-						'KELURAHAN' => strtoupper($this->input->post('kelurahan')),
-						'KOTA' => strtoupper($this->input->post('kota')),
-						'KD_POS' => $this->input->post('kd_pos'),
-						'PROVINSI' => strtoupper($this->input->post('provinsi')),
-						'DESA' => strtoupper($this->input->post('desa')),
-						'CREATED_BY' => $_SESSION['logged_in']['id_user']);
-					$id_data = array(
-						'ID_TKI' => $id_tki_update,
-						'ALAMAT_ID' =>$id_alamat_update);
-
-					$result = $this->InsertUpdate_model->register_ctki('UPDATE', $dataTki, $dataAlamat, $id_data);
+					$result = $this->InsertUpdate_model->register_ctki('UPDATE', $dataTki, $id_data);
 
 					if ($result == TRUE) {
 						$data_log_insert_tki = array(
@@ -276,16 +221,6 @@ class Data_tki extends CI_Controller {
 							'ID_USER' => $_SESSION['logged_in']['id_user']
 						);
 						$this->Log_model->insert_log($data_log_insert_tki);
-
-						$data_log_alamat = array(
-							'JENIS' => '36',
-							'CODE' => $id_alamat_update,
-							'AKSI' => 'UPDATE',
-							'STATUS' => '1',
-							'CATATAN' => implode("|",$dataAlamat),
-							'ID_USER' => $_SESSION['logged_in']['id_user']
-						);
-						$this->Log_model->insert_log($data_log_alamat);
 
 						$jumlah_kualifikasi = $this->input->post('count_kualifikasi');
 						$array_kualifikasi = explode(",", $this->input->post('id_kualifikasi'));
@@ -409,15 +344,6 @@ class Data_tki extends CI_Controller {
 						);
 						$this->Log_model->insert_log($data_log);
 
-						$status_sukses_alamat = 'GAGAL';
-						$data_log_alamat = array(
-							'JENIS' => '36',
-							'CODE' => $id_alamat_update,
-							'AKSI' => 'UPDATE',
-							'STATUS' => '0',
-							'CATATAN' => implode("|",$data_alamat),
-							'ID_USER' => $_SESSION['logged_in']['id_user']
-						);
 						$this->Log_model->insert_log($data_log_alamat);
 						$this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible">
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

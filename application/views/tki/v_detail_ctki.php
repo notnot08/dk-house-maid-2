@@ -243,93 +243,11 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-                <?php endforeach;?>
-                <!-- /.card-body -->
-              </div>
-              <!-- /.card -->
-              
-              <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Alamat Calon TKI</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <?php foreach($data_alamat->result() as $row ): ?>
-                  <div class="card-body">
                     <div class="row">
                       <div class="col-sm-12">
                         <div class="form-group">
-                          <label for="inputnama">Jenis Alamat</label>
-                          <select class="form-control" name="jenis_alamat" >
-                            <option value="<?php echo $row->JENIS_ALAMAT?>"><?php echo $row->DJENIS_ALAMAT;?></option>
-                            <option value="<?php echo $row->JENIS_ALAMAT?>">--</option>
-                            <option value="1">Sesuai KTP</option>
-                            <option value="2">Tempat Tinggal Saat Ini</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="col-sm-12">
-                        <div class="form-group">
-                          <label for="inputnik">Jalan</label>
-                          <textarea class="form-control" rows="3"  placeholder="Alamat.." required name="alamat"><?php echo $row->JALAN?></textarea>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="inputmaidcode">RT</label>
-                          <input type="text" class="form-control calculator-input" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  id="inputmaidcode" placeholder="RT" name="rt" maxlength="3" value="<?php echo $row->RT?>">
-                          <input type="hidden" class="form-control" id="inputmaidcode" placeholder="RT" name="id_alamat" maxlength="3" value="<?php echo $row->ID; ?>">
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label for="inputpassport">RW</label>
-                          <input type="text" class="form-control calculator-input" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  id="inputpassport" placeholder="RW" name="rw" maxlength="3" value="<?php echo $row->RW?>">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Kelurahan</label>
-                          <input type="text" class="form-control"  onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))' placeholder="Kelurahan" name="kelurahan" maxlength="50" value="<?php echo $row->KELURAHAN?>">
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Kecamatan</label>
-                          <input type="text" class="form-control"  onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))' placeholder="Kecamatan" name="kecamatan" maxlength="50" value="<?php echo $row->KECAMATAN?>">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Kota</label>
-                          <input type="text" class="form-control"  onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))' placeholder="Kota" name="kota" maxlength="50" value="<?php echo $row->KOTA?>">
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Provinsi</label>
-                          <input type="text" class="form-control"  onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))' placeholder="Provinsi" name="provinsi" maxlength="50" value="<?php echo $row->PROVINSI?>">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Kode Pos</label>
-                          <input type="text" class="form-control calculator-input" onkeypress="return event.charCode >= 48 && event.charCode <= 57"  placeholder="Kode Pos" name="kd_pos" maxlength="50" value="<?php echo $row->KD_POS?>">
-                        </div>
-                      </div>
-                      <div class="col-sm-6">
-                        <div class="form-group">
-                          <label>Desa</label>
-                          <input type="text" class="form-control"  onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))' placeholder="Desa" name="desa" maxlength="50" value="<?php echo $row->DESA?>">
+                          <label for="inputnik">Alamat Lengkap</label>
+                          <textarea class="form-control" rows="3" placeholder="contoh: JL. Raya Cibodas ..." required name="alamat_lengkap"><?php echo $row->ALAMAT_LENGKAP;?></textarea>
                         </div>
                       </div>
                     </div>
@@ -337,6 +255,7 @@
                 <?php endforeach;?>
                 <!-- /.card-body -->
               </div>
+              <!-- /.card -->
               <div class="card">
                 <div class="card-header">
                   <h3 class="card-title">Dokumen dan Kelengkapan</h3>
