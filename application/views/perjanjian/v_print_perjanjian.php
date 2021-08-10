@@ -89,7 +89,7 @@ $hariIni = new DateTime(); ?>
                       </tr>
                       <tr>
                         <td>Negara Tujuan</td>
-                        <td>: <?php echo $row->NEGARA_TUJUAN;?></td>
+                        <td>: <?php echo $row->NEGARA;?></td>
                       </tr>
                       <tr>
                         <td>Alamat</td>

@@ -29,9 +29,9 @@ class Kontrak extends CI_Controller {
 			$data['isform'] = 'Y';
 			$file = $this->Dokumen_model->get_doc_info('KONTRAK', $id);
 			$row1 = $file->row_array();
-			$array['path'] = $row1['PATH'];
-			$array['file'] = $row1['FILE'];
-			$array['id_file'] = $row1['ID'];
+			$array['path'] = isset($row1['PATH']) ? $row1['PATH'] : [];
+			$array['file'] = isset($row1['FILE']) ? $row1['FILE'] : [];
+			$array['id_file'] = isset($row1['ID']) ? $row1['ID'] : [];
 			$array['data_kontrak'] = $this->Kontrak_model->get_kontrak_detail($id);
 			$array['data_doc'] = $this->Dokumen_model->get_doc_non_wajib();
 			foreach($array['data_kontrak']->result() as $row ):

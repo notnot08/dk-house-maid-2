@@ -141,7 +141,6 @@ class Pekerjaan_model extends CI_Model {
             (SELECT NEGARA FROM TB_NEGARA WHERE CODE = (SELECT NEGARA FROM TB_LOWONGAN WHERE ID = a.ID_LOWONGAN)) as 'NEGARA'
             FROM JUSTIFIKASI_PEKERJAAN a JOIN MST_TKI b ON a.ID_TKI = b.ID JOIN TB_PEKERJAAN c ON a.ID_PEKERJAAN = c.ID WHERE a.ID = '".$id."'");
 		return $hasil;
-		// JOIN TB_SURAT_PERJANJIAN d ON a.ID_PERJANJIAN = d.ID
 	}
 
 	public function get_timeline($id){
@@ -176,7 +175,7 @@ class Pekerjaan_model extends CI_Model {
 
 	public function update_kontrak_justifikasi($id, $id_kontrak){
 		$hasil = $this->db->query("UPDATE JUSTIFIKASI_PEKERJAAN SET ID_KONTRAK = '".$id_kontrak."', KONTRAK_KERJA_APPROVAL = '0' WHERE ID = '".$id."'");
-		$hasil2 = $this->db->query("UPDATE TB_KONTRAK SET ID_PEKERJAAN = (SELECT ID_PEKERJAAN FROM JUSTIFIKASI_PEKERJAAN WHERE ID_KONTRAK = '".$id_kontrak."') WHERE ID = '".$id_kontrak."'");
+		// $hasil2 = $this->db->query("UPDATE TB_KONTRAK SET ID_PEKERJAAN = (SELECT ID_PEKERJAAN FROM JUSTIFIKASI_PEKERJAAN WHERE ID_KONTRAK = '".$id_kontrak."') WHERE ID = '".$id_kontrak."'");
 		return $hasil;
 	}
 

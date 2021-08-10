@@ -16,14 +16,13 @@ class Data_perjanjian extends CI_Controller {
 		}
 	}
 
-	public function set_perjanjian($id, $id_tki){
+	public function set_perjanjian($id){
 		$validate = $this->Log_model->validateAct('22')->num_rows();
 		if ($validate > 0) {
 			$id_perjanjian = $this->GenerateID_model->generateid();
 
 			$data = array(
 				'ID' => $id_perjanjian,
-				'ID_TKI' => $id_tki,
 				'CREATED_BY' => $_SESSION['logged_in']['id_user']);
 
 			$result = $this->Perjanjian_model->insert_perjanjian($data);

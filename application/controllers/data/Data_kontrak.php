@@ -107,7 +107,6 @@ class Data_kontrak extends CI_Controller {
 				'TANGGAL_SELESAI' => $this->input->post('tanggal_selesai'),
 				'WAKTU_KERJA' => $this->input->post('waktu_kerja'),
 				'JAM_PERHARI' => $this->input->post('jam_perhari'),
-				'ID_PEKERJAAN' => $this->input->post('id_pekerjaan'),
 				'TGL_PEMBERIAN_GAJI' => $this->input->post('tgl_pemberian_gaji'),
 				'JUMLAH_GAPOK' => $this->input->post('jumlah_gapok'),
 				'TUNJANGAN_KESEHATAN' => $this->input->post('tunjangan_kesehatan'),

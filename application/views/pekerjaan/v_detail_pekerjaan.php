@@ -315,7 +315,7 @@
                           </div>
                         <?php } elseif ($status_perjanjian_app == NULL) { ?>
                           <div class="col-md-12">
-                            <a href="<?php echo base_url('index.php/data/Data_perjanjian/set_perjanjian/').$this->uri->segment('3').'/'.$id_tki;?>" onclick="clicked(event)" class="btn btn-primary btn-block">BUAT SURAT PERJANJIAN</a>
+                            <a href="<?php echo base_url('index.php/data/Data_perjanjian/set_perjanjian/').$this->uri->segment('3');?>" onclick="clicked(event)" class="btn btn-primary btn-block">BUAT SURAT PERJANJIAN</a>
                           </div>
                         <?php }
                       } elseif ($status_dokumen_app == '2') { ?>
